@@ -4,8 +4,11 @@
     <h1>Order #<%= @order.id %></h1>
   </header>
 
-  <div class="order-summary jumbotron">
+  <div class="order-summary jumbotron alert-success">
     <h4>Thank you for your order!</h4>
+    <h5>
+    receipt has been sent to   <%= @order.email %>
+    </h5>
   </div>
 
   <h2>Order Summary</h2>
@@ -31,7 +34,7 @@
             TOTAL:
           </th>
           <th>
-            <%= cart_subtotal_cents / 100.0 %>
+            <%= humanized_money_with_symbol @order.total_cents / 100.0 %>
           </th>
         </tr>
       </tfoot>
