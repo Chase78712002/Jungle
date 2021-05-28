@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   resources :about, only: [:index]
 
+  resources :sessions, only: [:new, :create, :destroy]
+
   get '/signup' => 'users#new'
   post '/users' => 'users#create'
 
