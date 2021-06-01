@@ -73,6 +73,18 @@ RSpec.describe User, type: :model do
       end
     end
 
+    context "Password minimum length" do
+      it "should have a minimum length requirement for password when creating a user account" do
+        user1 = User.new(
+          name: "Bruce",
+          email: "test@test.com",
+          password: "12",
+          password_confirmation: "12"
+        )
+        user1.save
+        expect(user1.errors.full_messages[0]).to eq("Password is too short (minimum is 3 characters)")
+      end
+    end
 
   end
 end
