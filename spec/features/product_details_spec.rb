@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "ProductDetails", type: :feature do
+RSpec.feature "ProductDetails", type: :feature, js:true  do
   # SETUP
   before :each do
     @category = Category.create! name: 'Apparel'
@@ -15,4 +15,22 @@ RSpec.feature "ProductDetails", type: :feature do
       )
     end
   end
+
+  scenario "They see product details" do
+
+    # ACT
+    visit root_path
+    click_link('Details', match: :first)
+    # DEBUG
+    expect(page).to have_selector '.products-show'
+    puts page.html
+
+    # Verify
+    save_screenshot 'test_product_details.png'
+    
+    
+    
+
+  end
+
 end
